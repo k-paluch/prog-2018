@@ -18,9 +18,14 @@ int main(){
 	do{
 		add_random_tile(&game);
 		render(game);
-		if(is_move_possible(game) == false){printf("GAME OVER\n"); return 0;};
-		if(is_game_won(game) == true){printf("Congratulation you win!!!\n"); return 0;};
-		printf("Where to go: ");
+		if(is_move_possible(game) == false){
+			printf("GAME OVER\n");
+		       	return 0;}
+		;
+		if(is_game_won(game) == true){
+			printf("Congratulation you win!!!\n"); 
+			return 0;
+		};
 		char move[1];
 		scanf("%c", &move[0]);
 		printf("\n");

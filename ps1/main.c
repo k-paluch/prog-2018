@@ -29,7 +29,7 @@ int main(){
 		char move[1];
 		scanf("%c", &move[0]);
 		printf("\n");
-		/*if (move[0]=='w'|| move[0] =='W'){
+		if (move[0]=='w'|| move[0] =='W'){
 			update(&game, -1, 0);
 		}
 		if (move[0]=='a'|| move[0] =='A'){
@@ -40,7 +40,7 @@ int main(){
 		}
 		if (move[0]=='d'|| move[0] =='D'){
 			update(&game, 0, 1);
-		}*/
+		}
 	}while(!is_game_won(game) || is_move_possible(game));
 	return 0;
 }

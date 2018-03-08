@@ -22,7 +22,7 @@ void add_random_tile(struct game *game){
 bool update(struct game *game, int dy, int dx){
 	int scoreplus[11] = {2,4,8,16,32,64,128,256,512,1024,2048};
 	bool hodnota=false;
-	if(dy == -1 && dx ==0){
+	if(dy == -1&&dx==0){
 		for (int i=0; i < SIZE;i++){
 			for(int j=0; j < SIZE;j++){
 				for(int prechadzat =j; prechadzat >0; prechadzat--){
@@ -46,7 +46,7 @@ bool update(struct game *game, int dy, int dx){
 		}
 	}
 
-	if(dy == 1 && dx ==0){
+	if(dy == 1&&dx==0){
 		for(int i=0; i<SIZE;i++){
 			for(int j=SIZE-2;j<SIZE;j--){
 				for(int prechadzat=0; prechadzat<SIZE-1;prechadzat++){
@@ -70,7 +70,7 @@ bool update(struct game *game, int dy, int dx){
 		}
 	}
 
-	if(dy ==0 && dx ==1){
+	if(dx ==1 && dy==0){
 		for(int i=0; i < SIZE; i++){
 			for(int j=SIZE-1; j>0;j--){
 				for(int prechadzat=j; prechadzat<SIZE-1; prechadzat++){
@@ -94,7 +94,7 @@ bool update(struct game *game, int dy, int dx){
 		}
 	}
 
-	if(dy==0 && dx == -1){
+	if(dx == -1&&dy==0){
 		for(int i =0; i<SIZE; i++){
 			for(int j=0; j<SIZE-1;j++){
 				for(int prechadzat=j; prechadzat > 0; prechadzat++){

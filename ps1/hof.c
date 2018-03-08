@@ -8,10 +8,10 @@ int load(struct player list[]){
 	if(fp==NULL){return -1;}
 
 	int rank =0;
-		while(fscanf(fp,"%26s %d", list[rank].name, &list[rank].score)!= EOF&&rank < 10){
+		while(fscanf(fp,"%29s %d", list[rank].name, &list[rank].score)!= EOF&&rank < 10){
 			break;
 		}
-		fscanf(fp,"%26s %d", list[rank].name, &list[rank].score);
+		fscanf(fp,"%29s %d", list[rank].name, &list[rank].score);
 	fclose(fp);
 	return rank;
 }

@@ -30,7 +30,6 @@ bool add_player(struct player list[], int *size, const struct player player){
 	bool help = false;
 	int rank =280798;
 	int i;
-	struct player listhelp;
 	for(i =0; i<= *size; i++){
 		if(list[i].score < player.score){
 			rank =i;

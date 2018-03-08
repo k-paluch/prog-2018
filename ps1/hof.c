@@ -55,7 +55,7 @@ bool add_player(struct player list[], int *size, const struct player player){
 		}
 		help = true;
 	}
-	int zmena=0;	
+/*	int zmena=0;	
 	do{
 		for(int i=0; i<*size-1;i++){
 			if(list[i].score==list[i+1].score){
@@ -68,6 +68,6 @@ bool add_player(struct player list[], int *size, const struct player player){
 				}
 			}
 		}
-	}while(zmena==1);
+	}while(zmena==1);*/
 	return help;
 }

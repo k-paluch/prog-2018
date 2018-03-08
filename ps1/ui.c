@@ -16,8 +16,8 @@ void render(const struct game game){
         printf("\n");
     }
     printf("+---+---+---+---+\n");
-}
-/*void render(const struct game game){
+
+//void render(const struct game game){
     clear();
     char text[20];
     sprintf(text, "Score: %d", game.score);
@@ -55,4 +55,4 @@ void render(const struct game game){
     }
 
     refresh();
-}*/
+}

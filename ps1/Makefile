@@ -6,7 +6,7 @@ OUTPUT=game
 all: game
 
 game: main.c k.o hof.o ui.o
-	        $(CC) $(CFLAGS) main.c k.c hof.c ui.c $(LDLIBS) -o $(OUTPUT)
+	        $(CC) $(CFLAGS) main.c k.c hof.c ui.c $(LDLIBS) -lcurses -o $(OUTPUT)
 		        cppcheck --enable=performance,unusedFunction --error-exitcode=1 *.c
 
 k.o: k.c

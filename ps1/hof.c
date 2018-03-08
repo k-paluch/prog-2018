@@ -8,12 +8,10 @@ int load(struct player list[]){
 	if(fp==NULL){return -1;}
 
 	int rank =0;
-	for (rank =0; rank < 10; rank++){
-		if(fscanf(fp,"%26s %d", list[rank].name, &list[rank].score)== EOF){
+		while(fscanf(fp,"%26s %d", list[rank].name, &list[rank].score)!= EOF&&rank < 10){
 			break;
 		}
 		fscanf(fp,"%26s %d", list[rank].name, &list[rank].score);
-	}
 	fclose(fp);
 	return rank;
 }
@@ -32,13 +30,13 @@ bool add_player(struct player list[], int *size, const struct player player){
 	bool help = false;
 	int rank =280798;
 	int i;
+	struct player listhelp;
 	for(i =0; i<= *size; i++){
 		if(list[i].score < player.score){
 			rank =i;
 			break;
 		}
 	}
-
 	if(rank==280798 && *size <10){
 		list[*size] = player;
 		(*size)+=1;
@@ -56,19 +54,20 @@ bool add_player(struct player list[], int *size, const struct player player){
 			(*size) +=1;
 		}
 		help = true;
-	}/*
-	int zmena=0;
+	}
+	int zmena=0;	
 	do{
 		for(int i=0; i<*size-1;i++){
 			if(list[i].score==list[i+1].score){
 				if(strcmp(list[i].name,list[i+1].name) >0){
-					player = list[i+1];
+					listhelp = list[i+1];
 					list[i+1] = list[i];
-					list[i] = player;
+					list[i] = listhelp;
+//					listhelp=player;
 					zmena = 1;
 				}
 			}
 		}
-	}while(zmena==1);*/
+	}while(zmena==1);
 	return help;
 }

@@ -36,7 +36,7 @@ bool update(struct game *game, int dy, int dx){
 					}
 					else if(game->board[prechadzat+1][i]!=' ' && game->board[prechadzat][i] == game->board[prechadzat+1][i]){
 						game->board[prechadzat+1][i] = ' ';
-						game->board[prechadzat][i]++;
+						game->board[prechadzat][i]=(char)(game->board[prechadzat][i]+1);
 						game->score += scoreplus[(game->board[prechadzat][i])-65];
 						hodnota =true;
 						break;
@@ -60,7 +60,7 @@ bool update(struct game *game, int dy, int dx){
 					}
 					else if(game->board[prechadzat][i]!=' ' && game->board[prechadzat][i] == game->board[prechadzat-1][i]){
 						game->board[prechadzat-1][i] = ' ';
-						game->board[prechadzat][i]++;
+						game->board[prechadzat][i]=(char)(game->board[prechadzat][i]);
 						game->score += scoreplus[(game->board[prechadzat][i])-65];
 						hodnota =true;
 						break;
@@ -84,7 +84,7 @@ bool update(struct game *game, int dy, int dx){
 					}
 					else if(game->board[i][prechadzat]!=' ' && game->board[i][prechadzat] == game->board[i][prechadzat-1]){
 						game->board[i][prechadzat-1] = ' ';
-						game->board[i][prechadzat]++;
+						game->board[i][prechadzat]= (char)(game->board[i][prechadzat]+1);
 						game->score += scoreplus[(game->board[i][prechadzat])-65];
 						hodnota =true;
 						break;

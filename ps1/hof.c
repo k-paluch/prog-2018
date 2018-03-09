@@ -70,7 +70,7 @@ bool add_player(struct player list[], int *size, const struct player player){
 //	do{
 		for(int i=0; i<*size-1;i++){
 			if(list[i].score==list[i+1].score){
-				if(strcmp(list[i].name,list[i+1].name) >0){
+					if(strcmp(list[i].name,list[i+1].name) >0){
 					/*listhelp = list[i+1];
 					list[i+1] = list[i];
 					list[i] = listhelp;

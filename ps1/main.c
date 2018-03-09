@@ -14,8 +14,7 @@ int main(){
 			}
 		};
 		game.score = 0;
-		
-	do{
+		do{
 		add_random_tile(&game);
 		render(game);
 		if(is_move_possible(game) == false){

@@ -20,104 +20,247 @@ void add_random_tile(struct game *game){
 }
 
 bool update(struct game *game, int dy, int dx){
-	int scoreplus[11] = {2,4,8,16,32,64,128,256,512,1024,2048};
-	bool hodnota=false;
-	if(dy == -1&&dx==0){
-		for (int i=0; i < SIZE;i++){
-			for(int j=0; j < SIZE;j++){
-				for(int prechadzat =j; prechadzat >0; prechadzat--){
-					if(game->board[prechadzat+1][i]== ' '){
-						break;
-					}
-					if(game->board[prechadzat][i]== ' ' && game->board[prechadzat+1][i] != ' '){
-						game->board[prechadzat][i] = game->board[prechadzat+1][i];
-						game->board[prechadzat+1][i]= ' ';
-						hodnota = true;
-					}
-					else if(game->board[prechadzat+1][i]!=' ' && game->board[prechadzat][i] == game->board[prechadzat+1][i]){
-						game->board[prechadzat+1][i] = ' ';
-						game->board[prechadzat][i]=(char)(game->board[prechadzat][i]+1);
-						game->score += scoreplus[(game->board[prechadzat][i])-65];
-						hodnota =true;
-						break;
-					}
-				}
+	char riadok[4];
+	int  points[10] = { 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048 };
+	int  i,j,k,m;
+	if( dx == -1 && dy == 0)
+	{
+		for( m = 0, i = 0; i < 4; i++)
+		{
+			for( k = 0; k < 4; k++)
+			{
+				riadok[ k ] = '0';
 			}
-		}
-	}
+			for( k = 0, j = 0; j < 4; j++ )
+			{
+				if( game->board[i][j] != ' ' )
+				{
+					if( j == 0)
+					{
+						riadok[k] = game->board[i][j];
+					}
+					else
+					{
+					if( riadok[ k ] == game->board[i][j] )
+					{
+						game->score = game->score + points[ riadok[k] - 'A' ];
+						riadok[k]++;
+						k++;
+					}
+					else
+					{
+						k++;
+						riadok[k] = game->board[i][j];
 
-	if(dy == 1&&dx==0){
-		for(int i=0; i<SIZE;i++){
-			for(int j=SIZE-2;j<SIZE;j--){
-				for(int prechadzat=0; prechadzat<SIZE-1;prechadzat++){
-					if(game->board[prechadzat-1][i]== ' '){
-						break;
 					}
-					if(game->board[prechadzat][i]== ' ' && game->board[prechadzat-1][i] != ' '){
-						game->board[prechadzat][i] = game->board[prechadzat-1][i];
-						game->board[prechadzat-1][i]= ' ';
-						hodnota = true;
 					}
-					else if(game->board[prechadzat][i]!=' ' && game->board[prechadzat][i] == game->board[prechadzat-1][i]){
-						game->board[prechadzat-1][i] = ' ';
-						game->board[prechadzat][i]=(char)(game->board[prechadzat][i]);
-						game->score += scoreplus[(game->board[prechadzat][i])-65];
-						hodnota =true;
-						break;
-					}
-				}
-			}
-		}
-	}
 
-	if(dx ==1 && dy==0){
-		for(int i=0; i < SIZE; i++){
-			for(int j=SIZE-1; j>0;j--){
-				for(int prechadzat=j; prechadzat<SIZE-1; prechadzat++){
-					if(game->board[i][prechadzat-1]== ' '){
-						break;
-					}
-					if(game->board[i][prechadzat]== ' ' && game->board[i][prechadzat-1] != ' '){
-						game->board[i][prechadzat] = game->board[i][prechadzat-1];
-						game->board[i][prechadzat-1]= ' ';
-						hodnota = true;
-					}
-					else if(game->board[i][prechadzat]!=' ' && game->board[i][prechadzat] == game->board[i][prechadzat-1]){
-						game->board[i][prechadzat-1] = ' ';
-						game->board[i][prechadzat]= (char)(game->board[i][prechadzat]+1);
-						game->score += scoreplus[(game->board[i][prechadzat])-65];
-						hodnota =true;
-						break;
-					}
 				}
-			}
-		}
-	}
 
-	if(dx == -1&&dy==0){
-		for(int i =0; i<SIZE; i++){
-			for(int j=0; j<SIZE-1;j++){
-				for(int prechadzat=j; prechadzat > 0; prechadzat++){
-					if(game->board[i][prechadzat+1]== ' '){
-						break;
-					}
-					if(game->board[i][prechadzat]== ' ' && game->board[i][prechadzat-1] != ' '){
-						game->board[i][prechadzat] = game->board[i][prechadzat+1];
-						game->board[i][prechadzat+1]= ' ';
-						hodnota = true;
-					}
-					else if(game->board[i][prechadzat]!=' ' && game->board[i][prechadzat] == game->board[i][prechadzat+1]){
-						game->board[i][prechadzat+1] = ' ';
-						game->board[i][prechadzat] = (char)(game->board[i][prechadzat]+1);
-						game->score += scoreplus[(game->board[i][prechadzat])-65];
-						hodnota =true;
-						break;
-					}
+			}
+			for( k =0 ,j = 0 ; j < 4; j++)
+			{
+				if( riadok[j] != '0' )
+				{
+					game->board[i][k] = riadok[j];
+					k++;
 				}
+
+			}
+			if( k == 4)
+			{
+				m++;
+			}
+			for (;k < 4; k++)
+			{
+				game->board[i][k] = ' ';
 			}
 		}
+		if ( m > 3)
+		{
+			return false;
+		}
+		return true;
 	}
-	return hodnota;
+	if( dx == 1 && dy == 0)
+	{
+		for( m = 0, i = 0; i < 4; i++)
+		{
+			for( k = 0; k < 4; k++)
+			{
+				riadok[ k ] = '0';
+			}
+			for( k = 3, j = 3; j >= 0; j-- )
+			{
+				if( game->board[i][j] != ' ' )
+				{
+					if( j == 3)
+					{
+						riadok[k] = game->board[i][j];
+					}
+					else
+					{
+					if( riadok[ k ] == game->board[i][j] )
+					{
+						game->score = game->score + points[ riadok[k] - 'A' ];
+						riadok[k]++;
+						k--;
+					}
+					else
+					{
+						k--;
+						riadok[k] = game->board[i][j];
+
+					}
+					}
+
+				}
+
+			}
+			for( k = 3 ,j = 3 ; j >= 0; j--)
+			{
+				if( riadok[j] != '0' )
+				{
+					game->board[i][k] = riadok[j];
+					k--;
+				}
+
+			}
+			if( k == -1)
+			{
+				m++;
+			}
+			for (;k >=0 ; k--)
+			{
+				game->board[i][k] = ' ';
+			}
+		}
+		if ( m > 3)
+		{
+			return false;
+		}
+		return true;
+	}
+	if( dx == 0 && dy == 1)
+	{
+		for( m = 0, j = 0; j < 4; j++)
+		{
+			for( k = 0; k < 4; k++)
+			{
+				riadok[ k ] = '0';
+			}
+			for( k = 3, i = 3; i >= 0; i-- )
+			{
+				if( game->board[i][j] != ' ' )
+				{
+					if( i == 3)
+					{
+						riadok[k] = game->board[i][j];
+					}
+					else
+					{
+					if( riadok[ k ] == game->board[i][j] )
+					{
+						game->score = game->score + points[ riadok[k] - 'A' ];
+						riadok[k]++;
+						k--;
+					}
+					else
+					{
+						k--;
+						riadok[k] = game->board[i][j];
+
+					}
+					}
+
+				}
+
+			}
+			for( k =3 ,i = 3 ; i >= 0; i--)
+			{
+				if( riadok[i] != '0' )
+				{
+					game->board[k][j] = riadok[i];
+					k--;
+				}
+
+			}
+			if( k == -1)
+			{
+				m++;
+			}
+			for (;k >= 0; k--)
+			{
+				game->board[k][j] = ' ';
+			}
+		}
+		if ( m > 3)
+		{
+			return false;
+		}
+		return true;
+	}
+	if( dx == 0 && dy == -1)
+	{
+
+			for( m = 0, j = 0; j < 4; j++)
+			{
+				for( k = 0; k < 4; k++)
+				{
+					riadok[ k ] = '0';
+				}
+				for( k = 0, i = 0; i < 4; i++ )
+				{
+					if( game->board[i][j] != ' ' )
+					{
+						if( i == 0)
+						{
+							riadok[k] = game->board[i][j];
+						}
+						else
+						{
+						if( riadok[ k ] == game->board[i][j] )
+						{
+							game->score = game->score + points[ riadok[k] - 'A' ];
+							riadok[k]++;
+							k++;
+						}
+						else
+						{
+							k++;
+							riadok[k] = game->board[i][j];
+
+						}
+						}
+
+					}
+
+				}
+				for( k =0 ,i = 0 ; i < 4; i++)
+				{
+					if( riadok[i] != '0' )
+					{
+						game->board[k][j] = riadok[i];
+						k++;
+					}
+
+				}
+				if( k == 4)
+				{
+					m++;
+				}
+				for (;k < 4; k++)
+				{
+					game->board[k][j] = ' ';
+				}
+			}
+			if ( m > 3)
+			{
+				return false;
+			}
+			return true;
+	}
+	return false;
 }
 
 bool is_move_possible(const struct game game){

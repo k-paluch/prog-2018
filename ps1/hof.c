@@ -40,10 +40,7 @@ bool add_player(struct player list[], int *size, const struct player player){
 	bool help = false;
 	int rank =280798;
 	int i;
-<<<<<<< HEAD
 //	struct player listhelp;
-=======
->>>>>>> 2e311ea5516158a4057742ba6c40917eb8419e89
 	for(i =0; i<= *size; i++){
 		if(list[i].score < player.score){
 			rank =i;
@@ -68,14 +65,9 @@ bool add_player(struct player list[], int *size, const struct player player){
 		}
 		help = true;
 	}
-<<<<<<< HEAD
 	char temp[29];
 //	int zmena=0;	
 //	do{
-=======
-/*	int zmena=0;	
-	do{
->>>>>>> 2e311ea5516158a4057742ba6c40917eb8419e89
 		for(int i=0; i<*size-1;i++){
 			if(list[i].score==list[i+1].score){
 				if(strcmp(list[i].name,list[i+1].name) >0){
@@ -90,10 +82,6 @@ bool add_player(struct player list[], int *size, const struct player player){
 				}
 			}
 		}
-<<<<<<< HEAD
 //	}while(zmena==1);
-=======
-	}while(zmena==1);*/
->>>>>>> 2e311ea5516158a4057742ba6c40917eb8419e89
 	return help;
 }

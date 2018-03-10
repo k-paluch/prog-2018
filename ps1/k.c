@@ -2,7 +2,6 @@
 #include<stdio.h>
 #include<string.h>
 #include "k.h"
-#include "math.h"
 
 void add_random_tile(struct game *game){
     int row, col;

@@ -24,7 +24,6 @@ bool update(struct game *game, int dy, int dx){
 	char riadok[SIZE];
 	int  points[10] = { 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048 };
 	int  i,j,k,m;
-	int nomove, slucka=0;
 	if( dx == -1 && dy == 0)
 	{
 		for( m = 0, i = 0; i < SIZE; i++)
@@ -60,13 +59,6 @@ bool update(struct game *game, int dy, int dx){
 				}
 
 			}
-				nomove =0;
-				for(int l =0; l< SIZE; l++){
-				if(riadok[l]==game->board[l][j]){
-					nomove++;
-}
-}
-				if(nomove==4){slucka++;};
 			for( k =0 ,j = 0 ; j < SIZE; j++)
 			{
 				if( riadok[j] != '0' )
@@ -85,9 +77,6 @@ bool update(struct game *game, int dy, int dx){
 				game->board[i][k] = ' ';
 			}
 		}
-if(slucka ==4){
-return false;
-}
 		if ( m > SIZE-1)
 		{
 			return false;
@@ -129,13 +118,6 @@ return false;
 				}
 
 			}
-				nomove =0;
-				for(int l =0; l< SIZE; l++){
-				if(riadok[l]==game->board[l][j]){
-					nomove++;
-}
-}
-				if(nomove==4){slucka++;};
 			for( k = SIZE-1 ,j = SIZE-1 ; j >= 0; j--)
 			{
 				if( riadok[j] != '0' )
@@ -154,9 +136,6 @@ return false;
 				game->board[i][k] = ' ';
 			}
 		}
-if(slucka ==4){
-return false;
-}
 		if ( m > SIZE-1)
 		{
 			return false;
@@ -198,13 +177,6 @@ return false;
 				}
 
 			}
-				nomove =0;
-				for(int l =0; l< SIZE; l++){
-				if(riadok[l]==game->board[l][j]){
-					nomove++;
-}
-}
-				if(nomove==4){slucka++;};
 			for( k =SIZE-1 ,i = SIZE-1 ; i >= 0; i--)
 			{
 				if( riadok[i] != '0' )
@@ -223,9 +195,6 @@ return false;
 				game->board[k][j] = ' ';
 			}
 		}
-if(slucka ==4){
-return false;
-}
 		if ( m > SIZE-1)
 		{
 			return false;
@@ -268,13 +237,6 @@ return false;
 					}
 
 				}
-				nomove =0;
-				for(int l =0; l< SIZE; l++){
-				if(riadok[l]==game->board[l][j]){
-					nomove++;
-}
-}
-				if(nomove==4){slucka++;};
 				for( k =0 ,i = 0 ; i < SIZE; i++)
 				{
 					if( riadok[i] != '0' )
@@ -293,9 +255,6 @@ return false;
 					game->board[k][j] = ' ';
 				}
 			}
-			if(slucka ==4){
-return false;
-}
 			if ( m > SIZE-1)
 			{
 				return false;

@@ -68,7 +68,7 @@ bool add_player(struct player list[], int *size, const struct player player){
 		}
 		help = true;
 	}
-//	char temp[29];
+	char temp[29];
 	int zmena=0;	
 	do{
 		for(int i=0; i<*size-1;i++){
@@ -77,9 +77,12 @@ bool add_player(struct player list[], int *size, const struct player player){
 					/*strcpy(temp,list[i].name);
 					strcpy(list[i].name,list[i+1].name);
 					strcpy(list[i+1].name,temp);*/
-					struct player listhelp = list[i+1];
+					/*struct player listhelp = list[i+1];
 					list[i+1]= list[i];
-					list[i]= listhelp;
+					list[i]= listhelp;*/
+						strcpy(temp,list[i+1].name);
+						strcpy(list[i+1].name,list[i].name);
+						strcpy(list[i].name,temp);
 				}
 			}
 		}

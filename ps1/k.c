@@ -263,6 +263,7 @@ bool update(struct game *game, int dy, int dx){
 	return false;
 }
 
+
 bool is_move_possible(const struct game game){
 	for (int i=0;i<SIZE; i++){
 	       for (int j=0; j <SIZE; j++){

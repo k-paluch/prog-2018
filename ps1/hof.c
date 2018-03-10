@@ -19,9 +19,9 @@ int load(struct player list[]){
 			if (j==0) break;
 			if (list[j].score>list[j-1].score)
 			{
-				struct player player=list[j-1];
+				struct player listhelp=list[j-1];
 				list[j-1]=list[j];
-				list[j]=player;
+				list[j]=listhelp;
 			}
 		}
 	}
@@ -44,8 +44,8 @@ bool add_player(struct player list[], int *size, const struct player player){
 	int rank =280798;
 	int i;
 //	struct player listhelp;
-	for(i =0; i<= *size; i++){
-		if(list[i].score < player.score){
+	for(i =0; i< *size; i++){
+		if(list[i].score <= player.score){
 			rank =i;
 			break;
 		}
@@ -68,23 +68,21 @@ bool add_player(struct player list[], int *size, const struct player player){
 		}
 		help = true;
 	}
-	char temp[29];
-//	int zmena=0;	
-//	do{
+//	char temp[29];
+	int zmena=0;	
+	do{
 		for(int i=0; i<*size-1;i++){
 			if(list[i].score==list[i+1].score){
 					if(strcmp(list[i].name,list[i+1].name) >0){
-					/*listhelp = list[i+1];
-					list[i+1] = list[i];
-					list[i] = listhelp;
-					listhelp=player;
-					zmena = 1;*/
-					strcpy(temp,list[i].name);
+					/*strcpy(temp,list[i].name);
 					strcpy(list[i].name,list[i+1].name);
-					strcpy(list[i+1].name,temp);
+					strcpy(list[i+1].name,temp);*/
+					struct player listhelp = list[i+1];
+					list[i+1]= list[i];
+					list[i]= listhelp;
 				}
 			}
 		}
-//	}while(zmena==1);
+	}while(zmena==1);
 	return help;
 }

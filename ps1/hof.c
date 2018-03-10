@@ -12,13 +12,16 @@ int load(struct player list[]){
 			rank++;
 		}
 //		fscanf(fp,"%29s %d", list[rank].name, &list[rank].score);
-	char temp[29];
-	for(int i=0; i<9;i++){
-		for(int j=i+1; j<10;j++){
-			if(strcmp(list[i].name,list[j].name)){
-				strcpy(temp,list[i].name);
-				strcpy(list[i].name,list[j].name);
-				strcpy(list[j].name,temp);
+	for (int i = 0;i < rank;i++)
+	{
+		for (int j = 1; j < rank; j++)
+		{
+			if (j==0) break;
+			if (list[j].score>list[j-1].score)
+			{
+				struct player player=list[j-1];
+				list[j-1]=list[j];
+				list[j]=player;
 			}
 		}
 	}

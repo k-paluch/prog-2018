@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<string.h>
 #include "k.h"
+#include "math.h"
 
 void add_random_tile(struct game *game){
     int row, col;
@@ -59,6 +60,13 @@ bool update(struct game *game, int dy, int dx){
 				}
 
 			}
+				nomove =0;
+				for(int l =0; l< SIZE; l++){
+				if(riadok[l]==game->board[l][j]){
+					nomove++;
+}
+}
+				if(nomove==4){slucka++;};
 			for( k =0 ,j = 0 ; j < SIZE; j++)
 			{
 				if( riadok[j] != '0' )
@@ -77,6 +85,9 @@ bool update(struct game *game, int dy, int dx){
 				game->board[i][k] = ' ';
 			}
 		}
+if(slucka ==4){
+return false;
+}
 		if ( m > SIZE-1)
 		{
 			return false;
@@ -118,6 +129,13 @@ bool update(struct game *game, int dy, int dx){
 				}
 
 			}
+				nomove =0;
+				for(int l =0; l< SIZE; l++){
+				if(riadok[l]==game->board[l][j]){
+					nomove++;
+}
+}
+				if(nomove==4){slucka++;};
 			for( k = SIZE-1 ,j = SIZE-1 ; j >= 0; j--)
 			{
 				if( riadok[j] != '0' )
@@ -136,6 +154,9 @@ bool update(struct game *game, int dy, int dx){
 				game->board[i][k] = ' ';
 			}
 		}
+if(slucka ==4){
+return false;
+}
 		if ( m > SIZE-1)
 		{
 			return false;
@@ -177,6 +198,13 @@ bool update(struct game *game, int dy, int dx){
 				}
 
 			}
+				nomove =0;
+				for(int l =0; l< SIZE; l++){
+				if(riadok[l]==game->board[l][j]){
+					nomove++;
+}
+}
+				if(nomove==4){slucka++;};
 			for( k =SIZE-1 ,i = SIZE-1 ; i >= 0; i--)
 			{
 				if( riadok[i] != '0' )
@@ -195,6 +223,9 @@ bool update(struct game *game, int dy, int dx){
 				game->board[k][j] = ' ';
 			}
 		}
+if(slucka ==4){
+return false;
+}
 		if ( m > SIZE-1)
 		{
 			return false;

@@ -20,18 +20,18 @@ void add_random_tile(struct game *game){
 }
 
 bool update(struct game *game, int dy, int dx){
-	char riadok[4];
+	char riadok[SIZE];
 	int  points[10] = { 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048 };
 	int  i,j,k,m;
 	if( dx == -1 && dy == 0)
 	{
-		for( m = 0, i = 0; i < 4; i++)
+		for( m = 0, i = 0; i < SIZE; i++)
 		{
-			for( k = 0; k < 4; k++)
+			for( k = 0; k < SIZE; k++)
 			{
 				riadok[ k ] = '0';
 			}
-			for( k = 0, j = 0; j < 4; j++ )
+			for( k = 0, j = 0; j < SIZE; j++ )
 			{
 				if( game->board[i][j] != ' ' )
 				{
@@ -58,7 +58,7 @@ bool update(struct game *game, int dy, int dx){
 				}
 
 			}
-			for( k =0 ,j = 0 ; j < 4; j++)
+			for( k =0 ,j = 0 ; j < SIZE; j++)
 			{
 				if( riadok[j] != '0' )
 				{
@@ -67,16 +67,16 @@ bool update(struct game *game, int dy, int dx){
 				}
 
 			}
-			if( k == 4)
+			if( k == SIZE)
 			{
 				m++;
 			}
-			for (;k < 4; k++)
+			for (;k < SIZE; k++)
 			{
 				game->board[i][k] = ' ';
 			}
 		}
-		if ( m > 3)
+		if ( m > SIZE-1)
 		{
 			return false;
 		}
@@ -84,17 +84,17 @@ bool update(struct game *game, int dy, int dx){
 	}
 	if( dx == 1 && dy == 0)
 	{
-		for( m = 0, i = 0; i < 4; i++)
+		for( m = 0, i = 0; i < SIZE; i++)
 		{
-			for( k = 0; k < 4; k++)
+			for( k = 0; k < SIZE; k++)
 			{
 				riadok[ k ] = '0';
 			}
-			for( k = 3, j = 3; j >= 0; j-- )
+			for( k = SIZE-1, j = SIZE-1; j >= 0; j-- )
 			{
 				if( game->board[i][j] != ' ' )
 				{
-					if( j == 3)
+					if( j == SIZE-1)
 					{
 						riadok[k] = game->board[i][j];
 					}
@@ -117,7 +117,7 @@ bool update(struct game *game, int dy, int dx){
 				}
 
 			}
-			for( k = 3 ,j = 3 ; j >= 0; j--)
+			for( k = SIZE-1 ,j = SIZE-1 ; j >= 0; j--)
 			{
 				if( riadok[j] != '0' )
 				{
@@ -135,7 +135,7 @@ bool update(struct game *game, int dy, int dx){
 				game->board[i][k] = ' ';
 			}
 		}
-		if ( m > 3)
+		if ( m > SIZE-1)
 		{
 			return false;
 		}
@@ -143,17 +143,17 @@ bool update(struct game *game, int dy, int dx){
 	}
 	if( dx == 0 && dy == 1)
 	{
-		for( m = 0, j = 0; j < 4; j++)
+		for( m = 0, j = 0; j < SIZE; j++)
 		{
-			for( k = 0; k < 4; k++)
+			for( k = 0; k < SIZE; k++)
 			{
 				riadok[ k ] = '0';
 			}
-			for( k = 3, i = 3; i >= 0; i-- )
+			for( k = SIZE-1, i = SIZE-1; i >= 0; i-- )
 			{
 				if( game->board[i][j] != ' ' )
 				{
-					if( i == 3)
+					if( i == SIZE-1)
 					{
 						riadok[k] = game->board[i][j];
 					}
@@ -176,7 +176,7 @@ bool update(struct game *game, int dy, int dx){
 				}
 
 			}
-			for( k =3 ,i = 3 ; i >= 0; i--)
+			for( k =SIZE-1 ,i = SIZE-1 ; i >= 0; i--)
 			{
 				if( riadok[i] != '0' )
 				{
@@ -194,7 +194,7 @@ bool update(struct game *game, int dy, int dx){
 				game->board[k][j] = ' ';
 			}
 		}
-		if ( m > 3)
+		if ( m > SIZE-1)
 		{
 			return false;
 		}
@@ -203,13 +203,13 @@ bool update(struct game *game, int dy, int dx){
 	if( dx == 0 && dy == -1)
 	{
 
-			for( m = 0, j = 0; j < 4; j++)
+			for( m = 0, j = 0; j < SIZE; j++)
 			{
-				for( k = 0; k < 4; k++)
+				for( k = 0; k < SIZE; k++)
 				{
 					riadok[ k ] = '0';
 				}
-				for( k = 0, i = 0; i < 4; i++ )
+				for( k = 0, i = 0; i < SIZE; i++ )
 				{
 					if( game->board[i][j] != ' ' )
 					{
@@ -236,7 +236,7 @@ bool update(struct game *game, int dy, int dx){
 					}
 
 				}
-				for( k =0 ,i = 0 ; i < 4; i++)
+				for( k =0 ,i = 0 ; i < SIZE; i++)
 				{
 					if( riadok[i] != '0' )
 					{
@@ -245,16 +245,16 @@ bool update(struct game *game, int dy, int dx){
 					}
 
 				}
-				if( k == 4)
+				if( k == SIZE)
 				{
 					m++;
 				}
-				for (;k < 4; k++)
+				for (;k < SIZE; k++)
 				{
 					game->board[k][j] = ' ';
 				}
 			}
-			if ( m > 3)
+			if ( m > SIZE-1)
 			{
 				return false;
 			}

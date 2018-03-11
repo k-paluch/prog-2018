@@ -56,9 +56,10 @@ bool update(struct game *game, int dy, int dx){
 					}
 					}
 
-				}if(riadok[k]==game->board[i][j]){
+				}
+				if(riadok[k]==game->board[i][j]){
 					nomove++;
-}
+				}
 
 			}
 							
@@ -84,9 +85,9 @@ bool update(struct game *game, int dy, int dx){
 				game->board[i][k] = ' ';
 			}
 		}
-			if(slucka ==SIZE){
-return false;
-}
+		if(slucka ==SIZE){
+			return false;
+		}
 
 		if ( m > SIZE-1)
 		{
@@ -128,9 +129,10 @@ return false;
 					}
 					
 					
-				}if(riadok[k]==game->board[i][j]){
+				}
+				if(riadok[k]==game->board[i][j]){
 					nomove++;
-}
+				}
 
 			}
 
@@ -159,20 +161,17 @@ return false;
 				game->board[i][k] = ' ';
 			}
 		}
-
-
-			if(slucka ==SIZE){
-return false;
-}
-
+		if(slucka ==SIZE){
+			return false;
+		}
 		if ( m > SIZE-1)
 		{
 			return false;
 		}
 		return true;
 	}
-	if( dx == 0 && dy == 1)
-	{nomove =0;
+	if( dx == 0 && dy == 1){
+		nomove =0;
 		for( m = 0, j = 0; j < SIZE; j++)
 		{
 			for( k = 0; k < SIZE; k++)
@@ -203,10 +202,10 @@ return false;
 					}
 					}
 
-				}if(riadok[k]==game->board[i][j]){
+				}
+				if(riadok[k]==game->board[i][j]){
 					nomove++;
-}
-
+				}
 			}
 
 							
@@ -230,20 +229,17 @@ return false;
 				game->board[k][j] = ' ';
 			}
 		}
-
-
-			if(slucka ==SIZE){
-return false;
-}
+		if(slucka ==SIZE){
+			return false;
+		}
 		if ( m > SIZE-1)
 		{
 			return false;
 		}
 		return true;
 	}
-	if( dx == 0 && dy == -1)
-	{
-nomove =0;
+	if( dx == 0 && dy == -1){
+		nomove =0;
 			for( m = 0, j = 0; j < SIZE; j++)
 			{
 				for( k = 0; k < SIZE; k++)
@@ -275,9 +271,10 @@ nomove =0;
 						}
 	
 		
-					}if(riadok[k]==game->board[k][j]){
-					nomove++;
-}
+					}
+					if(riadok[k]==game->board[k][j]){
+						nomove++;
+					}
 
 				}
 					
@@ -304,8 +301,8 @@ nomove =0;
 			}
 
 			if(slucka ==SIZE){
-return false;
-}
+				return false;
+			}
 
 			if ( m > SIZE-1)
 			{

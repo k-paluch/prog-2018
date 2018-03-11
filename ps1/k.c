@@ -55,10 +55,10 @@ bool update(struct game *game, int dy, int dx){
 
 					}
 					}
-if(riadok[k]==game->board[i][j]){
+
+				}if(riadok[k]==game->board[i][j]){
 					nomove++;
 }
-				}
 
 			}
 							
@@ -127,10 +127,10 @@ return false;
 					}
 					}
 					
-					if(riadok[k]==game->board[i][j]){
+					
+				}if(riadok[k]==game->board[i][j]){
 					nomove++;
 }
-				}
 
 			}
 
@@ -202,10 +202,10 @@ return false;
 
 					}
 					}
-if(riadok[k]==game->board[i][j]){
+
+				}if(riadok[k]==game->board[i][j]){
 					nomove++;
 }
-				}
 
 			}
 
@@ -273,11 +273,11 @@ nomove =0;
 
 						}
 						}
-	if(riadok[k]==game->board[k][j]){
+	
+		
+					}if(riadok[k]==game->board[k][j]){
 					nomove++;
 }
-		
-					}
 
 				}
 					

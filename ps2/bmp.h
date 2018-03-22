@@ -40,14 +40,14 @@ char* vigenere_decrypt(const char* key, const char* text);
 /**
  * Function for bitwise encryption according to the following process:
  * The character about to be encrypted is divided in half (4 bits + 4 bits).
- * Subsequently, the bits in the right half are divided into two pairs and the values inside each pair are swapped.
+ * Subsequently, the bits in the left half are divided into two pairs and the values inside each pair are swapped.
  * The four bits created by this way are then used in a bitwise XOR operation with the remaining 4 bits.
  *
  * @param text - String representing the plaintext to be encrypted.
  * @return a pointer to a newly created string containing the ciphertext produced by encrypting the plaintext,
  * or NULL if the encryption was not successful.
  */
-char* bit_encrypt(const char* text);
+unsigned char* bit_encrypt(const char* text);
 
 
 /**
@@ -57,7 +57,7 @@ char* bit_encrypt(const char* text);
  * @return a pointer to a newly created string containing the plaintext produced by decrypting the ciphertext,
  * or NULL if the decryption was not successful.
  */
-char* bit_decrypt(const char* text);
+char* bit_decrypt(const unsigned char* text);
 
 
 /**
@@ -75,7 +75,7 @@ char* bit_decrypt(const char* text);
  * @return the address of a copy of the ciphertext encrypted by the BMP cipher,
  * or NULL if the encryption was not successful.
  */
-char* bmp_encrypt(const char* key, const char* text);
+unsigned char* bmp_encrypt(const char* key, const char* text);
 
 
 /**
@@ -88,6 +88,6 @@ char* bmp_encrypt(const char* key, const char* text);
  * @return the address of a copy of the plaintext decrypted by the BMP cipher,
  * or NULL if the decryption was not successful.
  */
-char* bmp_decrypt(const char* key, const char* text);
+char* bmp_decrypt(const char* key, const unsigned char* text);
 
 #endif

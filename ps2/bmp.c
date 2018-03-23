@@ -32,76 +32,61 @@ char* vigenere_encrypt(const char* key,const char* text){
 if(text == NULL || key == NULL) return NULL;
 	if(text[0] == '\0' || key[0] == '\0') return NULL;
 	
-	int check = 0;
-	for(int i = 0; i < strlen(text); i++)
-		if(isalpha(text[i])){
-			check = 1;
-			break;
-		}
-	if(check == 0) return NULL;
 	for(int i = 0; i < strlen(key); i++)
 		if(!isalpha(key[i])) return NULL;
 	
-	int dlzka = strlen(text); 
-	
-	int flag = 0;
-	for(int i = 0; i < dlzka; i++){
-		if(isalpha(text[i])){
-			flag = 1;
-			break;
-		}
-	}
-	if(flag == 0) 
-		return NULL;
-	for(int i = 0; i < strlen(key); i++) if(!isalpha(key[i])) return NULL;
+	int textl = strlen(text); 
+	int keyl=strlen(key);
+	for(int i = 0; i < keyl; i++) if(!isalpha(key[i])) return NULL;
 	
 	int i;
-	char* klucik;
-	dlzka = 0;
+	char* help;
+	int pomoc = 0;
 
 	for (int i = 0; text[i] != '\0'; i++){
-		if(isalpha(text[i])) dlzka++;
+		if(isalpha(text[i])) pomoc++;
 	}
-	klucik = (char*)calloc(dlzka, dlzka*sizeof(char));
-	for(i = 0; i < dlzka; i++){
-		klucik[i] = ' ';
+	help = (char*)calloc(pomoc, pomoc*sizeof(char));
+	for(i = 0; i < pomoc; i++){
+		help[i] = ' ';
 	}
-	klucik[i] = '\0';
-	if(strlen(key) < dlzka){
-		for(int i = 0, j = 0; klucik[i] != '\0';i++, j++){
+	help[i] = '\0';
+	if(keyl < pomoc){
+		for(int i = 0, j = 0; help[i] != '\0';i++, j++){
 			if(key[j] == '\0'){
 				j = 0;
-				klucik[i] = toupper(key[j]);	
+				help[i] = toupper(key[j]);	
 			}
-			else klucik[i] = toupper(key[j]);
+			else help[i] = toupper(key[j]);
 		}	
 	}
 	else{
-		for(int i = 0, j = 0; i != dlzka; i++, j++){
-			 klucik[i] = toupper(key[j]);
+		for(int i = 0, j = 0; i != pomoc; i++, j++){
+			 help[i] = toupper(key[j]);
 		}	
 
 	}
 	
 
-	char* shifr;
-	int rasstojanije = 0;
-	shifr = (char*)calloc(strlen(text), strlen(text)*sizeof(char));
-	strcpy(shifr, text);
-	for(int i = 0, j = 0; shifr[i] != '\0'; i++){
-		if(isalpha(shifr[i])){
-			rasstojanije = toupper(klucik[j]) - 65;
-			if((toupper(shifr[i]) + rasstojanije) > 'Z'){
-				shifr[i] = 64 + (toupper(shifr[i]) + rasstojanije - 'Z');
+	char* encrypt;
+	int helpp = 0;
+	encrypt = (char*)calloc(textl, textl*sizeof(char));
+	strcpy(encrypt, text);
+	for(int i = 0, j = 0; encrypt[i] != '\0'; i++){
+		if(isalpha(encrypt[i])){
+			helpp = toupper(help[j]) - 65;
+			if((toupper(encrypt[i]) + helpp) > 'Z'){
+				encrypt[i] = 64 + (toupper(encrypt[i]) + helpp - 'Z');
 			}
-			else shifr[i] = toupper(shifr[i]) + rasstojanije;
+			else encrypt[i] = toupper(encrypt[i]) + helpp;
 			j++;
 		}
 	}
-	free(klucik);
-	shifr[strlen(text)] = '\0';
+	free(help);
+	encrypt[textl] = '\0';
 
-	return shifr;
+	return encrypt;
+
 }
 
 char* vigenere_decrypt(const char* key,const char* text){
@@ -111,55 +96,47 @@ char* vigenere_decrypt(const char* key,const char* text){
 		if(!isalpha(key[i]))
 			return NULL;
 	
-	int check = 0;
-	for(int i = 0; i < strlen(text); i++)
-		if(isalpha(text[i])){
-			check = 1;
-			break;
-		}
-	
-	if(check == 0)
-		return NULL;
 	int i;
-	char* klucik;
+	char* help;
 	int dlzka = 0;
 	for (i = 0; text[i] != '\0'; i++){
 		if(isalpha(text[i])) dlzka++;
 	}
-	klucik = (char*)calloc(dlzka+1, (dlzka+1)*sizeof(char));
+	help = (char*)calloc(dlzka+1, (dlzka+1)*sizeof(char));
 	for(i = 0; i < dlzka; i++)
-		klucik[i] = ' ';
-	klucik[i] = '\0';
-	if(strlen(key) < dlzka){
-		for(int i = 0, j = 0; klucik[i] != '\0';i++, j++){
+		help[i] = ' ';
+	help[i] = '\0';
+	int keyl = strlen(key);
+	if(keyl < dlzka){
+		for(int i = 0, j = 0; help[i] != '\0';i++, j++){
 			if(key[j] == '\0'){
 				j = 0;
-				klucik[i] = toupper(key[j]);	
+				help[i] = toupper(key[j]);	
 			}
-			else klucik[i] = toupper(key[j]);
+			else help[i] = toupper(key[j]);
 		}	
 	}
 	else{
 		for(int i = 0, j = 0; i != dlzka; i++, j++)
-			 klucik[i] = toupper(key[j]);	
+			 help[i] = toupper(key[j]);	
 	}
-	dlzka = strlen(text);
+	int textl = strlen(text);
 	char* decrypted;
-	int rasstojanije;
-	decrypted = (char*)calloc(dlzka, dlzka*sizeof(char));
+	int helpp;
+	decrypted = (char*)calloc(textl, textl*sizeof(char));
 
-	for(int i = 0, j = 0; i < dlzka ; i++){
+	for(int i = 0, j = 0; i < textl ; i++){
 		if(isalpha(text[i])){
-			rasstojanije = klucik[j] - 65;
-			if(text[i] - rasstojanije < 'A')
-				decrypted[i] = 'Z' - (64 - (text[i] - rasstojanije));
-			else decrypted[i] = text[i] - rasstojanije;
+			helpp = help[j] - 65;
+			if(text[i] - helpp < 'A')
+				decrypted[i] = 'Z' - (64 - (text[i] - helpp));
+			else decrypted[i] = text[i] - helpp;
 			j++;
 		}
 		else decrypted[i] = text[i];
 	}
-	free(klucik);
-	decrypted[dlzka] = '\0';
+	free(help);
+	decrypted[textl] = '\0';
 	return decrypted;
 
 }

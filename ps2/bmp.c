@@ -52,9 +52,9 @@ char* viginere_encrypt(const char* key,const char* text){
 			return NULL;
 		}
 	}
-	if(keyl==0){
+	/*if(keyl==0){
 		return NULL;
-	}
+	}*/
 	int m;
 	for(k=0,m=0;k<keyl;k++){
 		if(isalpha(text[k])){
@@ -96,9 +96,9 @@ char* viginere_decrypt(const char* key,const char* text){
 //		return NULL;
 //	}
 	int keyl=strlen(key);
-	if(keyl==0){
+	/*if(keyl==0){
 		return NULL;
-	}
+	}*/
 	for(i =0,k=0;i<textl;i++){
 		if(isalpha(text[i])){
 			if((toupper(key[k%keyl])-'A')>(toupper(text[i])-'A')){

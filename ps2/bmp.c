@@ -273,7 +273,7 @@ unsigned char* bit_encrypt(const char* text){
 }
 
 char* bit_decrypt(const unsigned char* text){
-	if(text ==NULL){
+	/*if(text ==NULL){
 		return NULL;
 	}
 	int textl=strlen((char*)text);
@@ -326,7 +326,83 @@ char* bit_decrypt(const unsigned char* text){
 		}
 	}
 	help[i+1]='\0';
+	return help;*/
+	 if( text == NULL )
+	{
+		return NULL;
+	}
+	
+	int text_l ;
+	unsigned char binary[8]={ 128,64,32,16,8,4,2,1};
+	char *help;
+	int i,j;
+	unsigned char bits[8];
+	unsigned char first[4];
+	unsigned char second[4];
+	unsigned char result[4];
+	unsigned char temp;
+
+	text_l = strlen( (char*)text);
+	if( text_l == 0)
+	{
+		return NULL;
+	}
+	help = (char*) malloc ((text_l+1) * ( sizeof( char )));
+	if( help == NULL)
+	{
+		return NULL;
+	}
+	for( i = 0; i < text_l; i++ )
+	{
+		temp = (unsigned char)text[i];
+		for( j= 0; j < 8; j++)
+		{
+			bits[j] = temp % 2;
+			temp = temp /2;
+		}
+		for( j = 0; j <4; j++)
+		{
+			first[j] = bits[7-j];
+			second[j] = bits[3-j];
+		}
+		result[0] = first[1];
+		result[1] = first[0];
+		result[2] = first[3];
+		result[3] = first[2];
+		for( j = 0; j < 4; j++)
+		{
+			if ( second[j] == 0)
+			{
+				second[j] = first[j];
+			}
+			else
+			{
+				if( first[j] == 1)
+				{
+					second[j]=0;
+				}
+				else
+				{
+					second[j]=1;
+				}
+			}
+		}
+		for(j = 0; j < 4; j++)
+		{
+			bits[j] = result[j];
+			bits[4+j] = second[j];
+
+		}
+		help[i]=0;
+		for(j = 0; j < 8; j++)
+		{
+			help[i] = help[i] + (binary[j]*bits[j]);
+		}
+
+	}
+	help[i]='\0';
 	return help;
+	
 }
 
 unsigned char* bmp_encrypt(const char* key, const char* text){

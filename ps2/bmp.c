@@ -406,7 +406,7 @@ char* bit_decrypt(const unsigned char* text){
 }
 
 unsigned char* bmp_encrypt(const char* key, const char* text){
-	/*if(key==NULL){
+	if(key==NULL){
 		return NULL;
 	}
 	if(text==NULL){
@@ -417,12 +417,12 @@ unsigned char* bmp_encrypt(const char* key, const char* text){
 	unsigned char *returnn= bit_encrypt(vigen);
 	free(r);
 	free(vigen);
-	return returnn;*/
-	return (key==NULL || text==NULL) ? NULL : bit_encrypt(vigenere_encrypt(key, reverse(text)));
-}
+	return returnn;
+	/*return (key==NULL || text==NULL) ? NULL : bit_encrypt(vigenere_encrypt(key, reverse(text)));
+*/}
 
 char* bmp_decrypt(const char* key, const unsigned char *text){
-	/*if(key==NULL){
+	if(key==NULL){
 		return NULL;
 	}
 	if(text==NULL){
@@ -433,6 +433,7 @@ char* bmp_decrypt(const char* key, const unsigned char *text){
 	char* returnn=reverse(vigen);
 	free(b);
 	free(vigen);
-	return returnn;*/
-	return (key==NULL || text==NULL) ? NULL : reverse(vigenere_decrypt(key,bit_decrypt(text)));
+	return returnn;
+	/*return (key==NULL || text==NULL) ? NULL : reverse(vigenere_decrypt(key,bit_decrypt(text)));
+*/
 }

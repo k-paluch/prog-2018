@@ -240,60 +240,25 @@ unsigned char* bmp_encrypt(const char* key, const char* text){
 	if(text==NULL){
 		return NULL;
 	}
-	char *b;
-	char*m;
-	unsigned char*p;
-	int textl=strlen(text);
-	if(textl==0){
-		return NULL;
-	}
-	b = reverse(text);
-	if(b==NULL){
-		return NULL;
-	}
-	m=viginere_encrypt(key,b);
-	free(b);
-	if(m==NULL){
-		return NULL;
-	}
-	p=bit_encrypt(m);
-	free(m);
-	if(p==NULL){
-		return NULL;
-	}
-	return p;
+	char *r=reverse(text);
+	char *vigen = viginere_encrypt(key,r);
+	unsigned char *returnn= bit_encrypt(vigen);
+	free(r);
+	free(vigen);
+	return returnn;
 }
 
 char* bmp_decrypt(const char* key, const unsigned char *text){
-	/*if(key==NULL){
+	if(key==NULL){
 		return NULL;
 	}
 	if(text==NULL){
 		return NULL;
 	}
-	char *help;
-	help= text;	
-	char *b;
-	char *m;
-	char *p;
-	int textl=strlen((char*)text);
-	if(textl==0){
-		return NULL;
-	}
-	b=bit_encrypt(help);
-	if(b==NULL){
-		return NULL;
-	}
-	m=vigenere_decrypt(key,b);
+	char* b=bit_decrypt(text);
+	char* vigen=viginere_decrypt(key,b);
+	char* returnn=reverse(vigen);
 	free(b);
-	if(m==NULL){
-		return NULL;
-	}
-	p=reverse(m);
-	free(m);
-	if(p==NULL){
-		return NULL;
-	}
-	return p;*/
-	return NULL;
+	free(vigen);
+	return returnn;
 }

@@ -40,9 +40,9 @@ char* viginere_encrypt(const char* key,const char* text){
 	int keyl = strlen(key);
 	int k;
 	char* help = (char*)malloc((textl+1)*sizeof(char));
-	if(textl ==0){
-		return NULL;
-	}
+	/*if(textl ==0){
+		return 0;
+	}*/
 	if(help == NULL){
 		return NULL;
 	}
@@ -52,9 +52,9 @@ char* viginere_encrypt(const char* key,const char* text){
 			return NULL;
 		}
 	}
-	if(keyl==0){
+	/*if(keyl==0){
 		return NULL;
-	}
+	}*/
 	int m;
 	for(k=0,m=0;k<keyl;k++){
 		if(isalpha(text[k])){
@@ -80,9 +80,9 @@ char* viginere_decrypt(const char* key,const char* text){
 	int textl = strlen(text);
 	int k,i;
 	char* help = (char*)malloc((textl+1)*sizeof(char));
-	if(textl ==0){
+	/*if(textl ==0){
 		return NULL;
-	}
+	}*/
 	if(help == NULL){
 		return NULL;
 	}
@@ -96,9 +96,9 @@ char* viginere_decrypt(const char* key,const char* text){
 //		return NULL;
 //	}
 	int keyl=strlen(key);
-	if(keyl==0){
+	/*if(keyl==0){
 		return NULL;
-	}
+	}*/
 	for(i =0,k=0;i<textl;i++){
 		if(isalpha(text[i])){
 			if((toupper(key[k%keyl])-'A')>(toupper(text[i])-'A')){

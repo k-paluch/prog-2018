@@ -40,9 +40,9 @@ char* viginere_encrypt(const char* key,const char* text){
 	int keyl = strlen(key);
 	int k;
 	char* help = (char*)malloc((textl+1)*sizeof(char));
-	if(textl ==0){
+	/*if(textl ==0){
 		return NULL;
-	}
+	}*/
 	if(help == NULL){
 		return NULL;
 	}
@@ -80,9 +80,9 @@ char* viginere_decrypt(const char* key,const char* text){
 	int textl = strlen(text);
 	int k,i;
 	char* help = (char*)malloc((textl+1)*sizeof(char));
-	if(textl ==0){
+	/*if(textl ==0){
 		return NULL;
-	}
+	}*/
 	if(help == NULL){
 		return NULL;
 	}

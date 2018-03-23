@@ -41,7 +41,11 @@ char* viginere_encrypt(const char* key,const char* text){
 	int k;
 	char* help = (char*)malloc((textl+1)*sizeof(char));
 	/*if(textl ==0){
+<<<<<<< HEAD
 		return 0;
+=======
+		return NULL;
+>>>>>>> caa20342cec9dcc9a40ed55550ca2088d3cf19ca
 	}*/
 	if(help == NULL){
 		return NULL;

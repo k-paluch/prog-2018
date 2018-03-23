@@ -192,7 +192,7 @@ unsigned char* bit_encrypt(const char* text){
 			help[i]= help[i]+(bits[j]*bin[j]);
 		}
 	}
-	help[i]='\0';
+	help[i+1]='\0';
 	return help;
 }
 
@@ -249,7 +249,7 @@ char* bit_decrypt(const unsigned char* text){
 			help[i]= help[i]+(bin[j]*bits[j]);
 		}
 	}
-	help[i]='\0';
+	help[i+1]='\0';
 	return help;
 }
 

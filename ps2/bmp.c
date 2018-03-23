@@ -16,11 +16,10 @@ char* reverse(const char* text){
 		return NULL;
 	}
 	if(i!=0){
-		for(j=0,i=i-1;i>=0; j++){
-			help[j]=(char)(toupper(text[i]));
-			i--;
-		}
-		help[j]='\0';
+		for (j = 1; j <= i; j++) {
+			help[j-1] = toupper(text[i-j]);
+   		}
+		help[i]='\0';
 	}
 	else{
 		help[i]='\0';

@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include "bmp.h"
 #include<math.h>
+#include <assert.h>
 char* reverse(const char* text){
 	if(text == NULL){
 		return NULL;
@@ -142,29 +143,35 @@ char* vigenere_decrypt(const char* key,const char* text){
 }
 
 unsigned char* bit_encrypt(const char* text){
-	if(text==NULL){
+	/*if(text==NULL){
 		return NULL;
 	}
-	int textl=strlen(text);
-	unsigned char* help = (unsigned char*)malloc((textl+1)*sizeof(unsigned char));
-	char bin[8]= {2^7,2^6,2^5,2^4,2^3,2^2,2^1,2^0};
+	char bin[8]= {128,64,32,16,8,4,2,1};
+	int textl;
+	unsigned char *help;
 	char bits[8];
 	char firsthalf[4];
 	char secondhalf[4];
 	char first[4];
+	char temp;
+	textl=strlen(text);
+	int i,j;
+	if(textl==0){
+		return NULL;
+	}
+	help = (unsigned char*)malloc((textl+1)*(sizeof(unsigned char)));
+	
 //	if(textl==0){
 //		return NULL;
 //	}
-	if(help==0){
+	if(help==NULL){
 		return NULL;
 	}
-	char temp;
-	int i;
 	for(i=0; i<textl; i++){
 		temp=text[i];
-		for(int j=0; j<8;j++){
-			bits[j]=temp%2;
-			temp = temp/2;
+		for(j=0; j<8;j++){
+			bits[j]=temp % 2;
+			temp = temp / 2;
 		}
 		firsthalf[0]=bits[6];
 		firsthalf[1]=bits[7];
@@ -174,7 +181,7 @@ unsigned char* bit_encrypt(const char* text){
 		secondhalf[1]=bits[2];
 		secondhalf[2]=bits[1];
 		secondhalf[3]=bits[0];
-		for(int j=0; j<4;j++){
+		for(j=0; j<4;j++){
 			first[j]=firsthalf[j];
 			if(firsthalf[j]==secondhalf[j]){
 				firsthalf[j]='0';
@@ -183,17 +190,86 @@ unsigned char* bit_encrypt(const char* text){
 				firsthalf[j]='1';
 			}
 		}
-		for(int j=0; j<4; j++){
+		for(j=0; j<4; j++){
 			bits[j]=first[j];
 			bits[j+4]=firsthalf[j];
 		}
 		help[i]=0;
-		for(int j =0;j<8; j++){
-			help[i]= help[i]+(bits[j]*bin[j]);
+		for( j =0;j<8; j++){
+			help[i]= help[i] + (bits[j]*bin[j]);
 		}
 	}
-	help[i+1]='\0';
+	help[i]='\0';
+	return help;*/
+   if( text == NULL)
+	{
+		return NULL;
+	}
+	
+	char binary[8]={128, 64, 32, 16, 8,4,2,1};
+	int text_l;
+	unsigned char *help;
+	char bits[8];
+	char first[4];
+	char second[4];
+	char result[4];
+	char temp;
+	int i,j;
+
+	text_l =strlen(text);
+	if( text_l == 0)
+	{
+		return NULL;
+	}
+	help= (unsigned char*) malloc ( (text_l+1)* (sizeof(unsigned char)));
+	if( help == NULL)
+	{
+		return NULL;
+	}
+	for( i = 0; i < text_l;i++)
+	{
+		temp = text[i];
+		for(j= 0; j < 8; j++)
+		{
+			bits[j] = temp % 2;
+			temp = temp / 2;
+		}
+		first[0] = bits[6];
+		first[1] = bits[7];
+		first[2] = bits[4];
+		first[3] = bits[5];
+		second[0]= bits[3];
+		second[1]= bits[2];
+		second[2]= bits[1];
+		second[3]= bits[0];
+		for( j =0; j < 4; j++)
+		{
+			result[j]=first[j];
+			if( first[j] == second[j] )
+			{
+				first[j] = 0;
+			}
+			else
+			{
+				first[j] = 1;
+			}
+		}
+		for( j = 0; j < 4; j++)
+		{
+			bits[j] =result[j];
+			bits[j+4] = first[j];
+		}
+		help[i]=0;
+		for( j=0; j < 8;j++)
+		{
+			help[i]= help[i]+ (bits[j] * binary[j]);
+		}
+
+	}
+	help[ i ] = '\0';
+
 	return help;
+
 }
 
 char* bit_decrypt(const unsigned char* text){
@@ -254,7 +330,7 @@ char* bit_decrypt(const unsigned char* text){
 }
 
 unsigned char* bmp_encrypt(const char* key, const char* text){
-	if(key==NULL){
+	/*if(key==NULL){
 		return NULL;
 	}
 	if(text==NULL){
@@ -265,11 +341,12 @@ unsigned char* bmp_encrypt(const char* key, const char* text){
 	unsigned char *returnn= bit_encrypt(vigen);
 	free(r);
 	free(vigen);
-	return returnn;
+	return returnn;*/
+	return (key==NULL || text==NULL) ? NULL : bit_encrypt(vigenere_encrypt(key, reverse(text)));
 }
 
 char* bmp_decrypt(const char* key, const unsigned char *text){
-	if(key==NULL){
+	/*if(key==NULL){
 		return NULL;
 	}
 	if(text==NULL){
@@ -280,5 +357,6 @@ char* bmp_decrypt(const char* key, const unsigned char *text){
 	char* returnn=reverse(vigen);
 	free(b);
 	free(vigen);
-	return returnn;
+	return returnn;*/
+	return (key==NULL || text==NULL) ? NULL : reverse(vigenere_decrypt(key,bit_decrypt(text)));
 }

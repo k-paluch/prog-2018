@@ -22,6 +22,7 @@ for(int i=0; i < 12;i++) {
     printf("%x ", encryptedd[i]);
     //80 9c 95 95 96 11 bc 96 b9 95 9d 10
 }
+printf("\n");
 free(encryptedd);
 
 

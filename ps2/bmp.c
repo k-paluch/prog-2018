@@ -80,7 +80,7 @@ if(text == NULL || key == NULL) return NULL;
 				encrypt[i] = 64 + (toupper(encrypt[i]) + helpp - 'Z');
 			}
 			else encrypt[i] = toupper(encrypt[i]) + helpp;
-			j++;
+			 j++;
 		}
 	}
 	free(help);

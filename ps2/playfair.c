@@ -131,7 +131,10 @@ char* playfair_encrypt(const char* key, const char* text) {
 			
 		}
 	}
-	int	length = strlen(text);
+	int length = strlen(text);
+	/*if(length==0) {
+		return NULL;
+	}*/
 	help[length+b] = '\0';
 	if(strlen(help) % 2 != 0){
 		help[length+b] = 'X';
@@ -142,6 +145,9 @@ char* playfair_encrypt(const char* key, const char* text) {
 	free(rip);
 
 	length = strlen(help);
+	/*if(length==0){
+		return NULL;
+	}*/
 	char* encrypted = (char*)calloc(length+(length/2-1), (length+(length/2-1))*sizeof(char));
 	
 	//makecipher(length, board, kristik, encrypted);

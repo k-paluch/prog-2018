@@ -8,7 +8,6 @@
 
 char* playfair_encrypt(const char* key, const char* text) {
 
-
 	if (strlen(key) == 0 || strlen(text) == 0){
 		return NULL;}
 	if (key == NULL || text == NULL)

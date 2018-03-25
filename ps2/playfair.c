@@ -205,7 +205,7 @@ char* playfair_encrypt(const char* key, const char* text) {
 		encrypted[i+2] = ' ';
 		i = i + 3;
 	}
-	encrypted[i] = '\0';
+	encrypted[i+1] = '\0';
 
 	free(help);
 	return encrypted;

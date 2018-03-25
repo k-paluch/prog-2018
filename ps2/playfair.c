@@ -215,12 +215,22 @@ char* playfair_encrypt(const char* key, const char* text) {
 
 char* playfair_decrypt(const char* key, const char* text) {
 
-    if (key == NULL || text == NULL)
-	return NULL;
-
-    if(strlen(key)==0||strlen(text)==0){
-	    return NULL;
-    }
+	if (key == NULL || text == NULL){
+		return NULL;
+	}
+	if(strlen(key)==0||strlen(text)==0){
+	        return NULL;
+        }
+    	for (int i = 0; i < strlen(key); i++) {
+		if (!(isalpha(key[i]))) {
+			return NULL;
+		}
+	}
+	for (int i = 0; i < strlen(text); i++){
+		if (!(isalpha(text[i]) || text[i] == ' ')) {
+			return NULL;
+		}
+	}
     return NULL;
 
 }

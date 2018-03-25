@@ -34,7 +34,7 @@ char* playfair_encrypt(const char* key, const char* text) {
 		}
 	}
 
-	char alpha = 65;
+	char temp = 65;
 	int i = -1, j, k=1 , o = 0;
 	bool flag = true;
 
@@ -71,18 +71,18 @@ char* playfair_encrypt(const char* key, const char* text) {
 			if(board[i][j] != ' ') continue;
 			else{
 				do{
-					if(alpha == 'W') alpha++;
+					if(temp == 'W') temp++;
 					flag = false;
 					for (int k = 0; k < 5; k++)
 						for(int o = 0; o < 5; o++)
-							if (board[k][o] == alpha){
-								alpha++;
+							if (board[k][o] == temp){
+								temp++;
 								flag = true;
 								break;
 							}
 				}while(flag != false);
-				board[i][j] = alpha;
-				alpha++;
+				board[i][j] = temp;
+				temp++;
 			}
 		}
 	}
@@ -90,7 +90,11 @@ char* playfair_encrypt(const char* key, const char* text) {
 
 	int b = 0;
 
-	char* help= (char*)calloc(strlen(text), strlen(text)*sizeof(char));
+	/*char* help= (char*)malloc(strlen(text), strlen(text)*sizeof(char));*/
+	char* help= (char*)malloc((strlen(text)+1)*sizeof(char));
+	if(help==NULL){
+		return NULL;
+	}
  	 k = 0;
 
 	for(int i = 0; i < strlen(text); i++){
@@ -112,7 +116,8 @@ char* playfair_encrypt(const char* key, const char* text) {
 	help[k] = '\0';
 	
 		int a = 0;
-	char* rip=(char*)calloc(2*strlen(help)+1, (2*strlen(help)+1)*sizeof(char)); 
+	//char* rip=(char*)malloc(2*strlen(help)+1, (2*strlen(help)+1)*sizeof(char)); 
+	char* rip= (char*)malloc(2*(strlen(help)+1)*sizeof(char));
 	for(int i = 0; i < strlen(help); i=i+2){
 		if(help[i] == help[i+1] && help[i] != 'X'){
 			k = i+1;
@@ -135,20 +140,21 @@ char* playfair_encrypt(const char* key, const char* text) {
 			
 		}
 	}
-	int length = strlen(text);
-	help[length+b] = '\0';
+	int textl = strlen(text);
+	help[textl+b] = '\0';
 	if(strlen(help) % 2 != 0){
-		help[length+b] = 'X';
+		help[textl+b] = 'X';
 		b++;
-		help[length+b] = '\0';
+		help[textl+b] = '\0';
 	}
 	
 	free(rip);
 
-	length = strlen(help);
-	char* encrypted = (char*)calloc(length+(length/2-1), (length+(length/2-1))*sizeof(char));
+	textl = strlen(help);
+	//char* encrypted = (char*)malloc(textl+(textl/2-1), (textl+(textl/2-1))*sizeof(char));
+	char* encrypted= (char*)malloc((textl+(textl/2-1))*sizeof(char));
 	int pomoc, x, y, x1, y1;
-	for(int n = 0; n < length/2; n++){
+	for(int n = 0; n < textl/2; n++){
 		for(int i = 0; i < 5; i++){
 			for(int j = 0; j < 5; j++){
 				if(board[i][j] == help[2*n]){
@@ -198,7 +204,7 @@ char* playfair_encrypt(const char* key, const char* text) {
 		
 	}
 	i = 0;
-	for (int n = 0; n < length/2; n++)
+	for (int n = 0; n < textl/2; n++)
 	{
 		encrypted[i] = help[2*n];
 		encrypted[i+1] = help[2*n + 1];
@@ -241,7 +247,7 @@ char* playfair_decrypt(const char* key, const char* text) {
 		}
 	}
 
-	char alpha = 65;
+	char temp = 65;
 	int i = -1, j, k=1 , o = 0;
 	bool flag = true;
 
@@ -278,18 +284,18 @@ char* playfair_decrypt(const char* key, const char* text) {
 			if(board[i][j] != ' ') continue;
 			else{
 				do{
-					if(alpha == 'W') alpha++;
+					if(temp == 'W') temp++;
 					flag = false;
 					for (int k = 0; k < 5; k++)
 						for(int o = 0; o < 5; o++)
-							if (board[k][o] == alpha){
-								alpha++;
+							if (board[k][o] == temp){
+								temp++;
 								flag = true;
 								break;
 							}
 				}while(flag != false);
-				board[i][j] = alpha;
-				alpha++;
+				board[i][j] = temp;
+				temp++;
 			}
 		}
 	}
@@ -297,7 +303,8 @@ char* playfair_decrypt(const char* key, const char* text) {
 
 	int b = 0;
 
-	char* help= (char*)calloc(strlen(text), strlen(text)*sizeof(char));
+//	char* help= (char*)malloc(strlen(text), strlen(text)*sizeof(char));
+	char* help= (char*)malloc((strlen(text)+1)*sizeof(char));
  	 k = 0;
 
 	for(int i = 0; i < strlen(text); i++){
@@ -319,7 +326,8 @@ char* playfair_decrypt(const char* key, const char* text) {
 	help[k] = '\0';
 	
 		int a = 0;
-	char* rip=(char*)calloc(2*strlen(help)+1, (2*strlen(help)+1)*sizeof(char)); 
+	//char* rip=(char*)malloc(2*strlen(help)+1, (2*strlen(help)+1)*sizeof(char)); 
+	char* rip= (char*)malloc(2*(strlen(help)+1)*sizeof(char));
 	for(int i = 0; i < strlen(help); i=i+2){
 		if(help[i] == help[i+1] && help[i] != 'X'){
 			k = i+1;
@@ -342,20 +350,21 @@ char* playfair_decrypt(const char* key, const char* text) {
 			
 		}
 	}
-	int length = strlen(text);
-	help[length+b] = '\0';
+	int textl = strlen(text);
+	help[textl+b] = '\0';
 	if(strlen(help) % 2 != 0){
-		help[length+b] = 'X';
+		help[textl+b] = 'X';
 		b++;
-		help[length+b] = '\0';
+		help[textl+b] = '\0';
 	}
 	
 	free(rip);
 
-	length = strlen(help);
-	char* encrypted = (char*)calloc(length+(length/2-1), (length+(length/2-1))*sizeof(char));
+	textl = strlen(help);
+	//char* encrypted = (char*)malloc(textl+(textl/2-1), (textl+(textl/2-1))*sizeof(char));
+	char* encrypted= (char*)malloc((textl+(textl/2-1))*sizeof(char));
 	int pomoc, x, y, x1, y1;
-	for(int n = 0; n < length/2; n++){
+	for(int n = 0; n < textl/2; n++){
 		for(int i = 0; i < 5; i++){
 			for(int j = 0; j < 5; j++){
 				if(board[i][j] == help[2*n]){
@@ -405,7 +414,7 @@ char* playfair_decrypt(const char* key, const char* text) {
 		
 	}
 	i = 0;
-	for (int n = 0; n < length/2; n++)
+	for (int n = 0; n < textl/2; n++)
 	{
 		encrypted[i] = help[2*n];
 		encrypted[i+1] = help[2*n + 1];

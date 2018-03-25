@@ -9,27 +9,31 @@
 char* playfair_encrypt(const char* key, const char* text) {
 
 	if (strlen(key) == 0 || strlen(text) == 0){
-		return NULL;}
-	if (key == NULL || text == NULL)
 		return NULL;
+	}
+	if (key == NULL || text == NULL){
+		return NULL;
+	}
 
-	for (int i = 0; i < strlen(key); i++) 
-		if (!(isalpha(key[i]))) 
+	for (int i = 0; i < strlen(key); i++) {
+		if (!(isalpha(key[i]))) {
 			return NULL;
+		}
+	}
 
-	for (int i = 0; i < strlen(text); i++)
-		if (!(isalpha(text[i]) || text[i] == ' ')) 
+	for (int i = 0; i < strlen(text); i++){
+		if (!(isalpha(text[i]) || text[i] == ' ')) {
 			return NULL;
+		}
+	}
 
-	char board[5][5] = {
-      	   {' ', ' ', ' ', ' ', ' '},
-     	   {' ', ' ', ' ', ' ', ' '},
-      	   {' ', ' ', ' ', ' ', ' '},
-     	   {' ', ' ', ' ', ' ', ' '},
-     	   {' ', ' ', ' ', ' ', ' '},
-    	};
+	char board[5][5];
+	for(int i=0; i<5;i++){
+		for(int j =0; j<5; j++){
+			board[j][i]=' ';
+		}
+	}
 
-    //	makeboard(board, key);
 	char alpha = 65;
 	int i = -1, j, k=1 , o = 0;
 	bool flag = true;
@@ -132,9 +136,6 @@ char* playfair_encrypt(const char* key, const char* text) {
 		}
 	}
 	int length = strlen(text);
-	/*if(length==0) {
-		return NULL;
-	}*/
 	help[length+b] = '\0';
 	if(strlen(help) % 2 != 0){
 		help[length+b] = 'X';
@@ -145,12 +146,7 @@ char* playfair_encrypt(const char* key, const char* text) {
 	free(rip);
 
 	length = strlen(help);
-	/*if(length==0){
-		return NULL;
-	}*/
 	char* encrypted = (char*)calloc(length+(length/2-1), (length+(length/2-1))*sizeof(char));
-	
-	//makecipher(length, board, kristik, encrypted);
 	int pomoc, x, y, x1, y1;
 	for(int n = 0; n < length/2; n++){
 		for(int i = 0; i < 5; i++){
@@ -222,7 +218,9 @@ char* playfair_decrypt(const char* key, const char* text) {
     if (key == NULL || text == NULL)
 	return NULL;
 
-
+    if(strlen(key)==0||strlen(text)==0){
+	    return NULL;
+    }
     return NULL;
 
 }

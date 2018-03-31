@@ -5,8 +5,8 @@
 #include<time.h>
 #include<stdlib.h>
 
-unsigned int count(unsigned int i) {
-	unsigned int ret = 1;
+unsigned long int count(unsigned long int i) {
+	unsigned long int ret = 1;
 	while(i/=10)ret++;
 	return ret;
 }
@@ -20,25 +20,11 @@ unsigned int count(unsigned int i) {
 	return k%10;
 }*/
 
-int main(int argc, char *argv[]){
-	//clock_t start,end;
-	//double cpu_time_used;
-	//start = clock();
-	if(argc!=2){
-		return 1;
-	}
-	char filename[20];
-	strcpy(filename,argv[1]);
-	FILE *fp = NULL;
-	fp=fopen(filename,"r");
-	if(fp==NULL){
-		perror("Error opening file\n");
-		return 1;
-	}
-	unsigned int number;
-	unsigned int dig;
+int main(){
+	unsigned long int number;
+	unsigned long int dig;
 	//unsigned int number;
-	fscanf(fp,"%d",&number);
+	scanf("%ld",&number);
 	//printf("%d \n",number);
 	while((count(number))>1){
 	dig= count(number);
@@ -62,8 +48,7 @@ int main(int argc, char *argv[]){
 	}
 	//printf("%d\n",number);
 	}
-	printf("%d\n",number);
-	fclose(fp);
+	printf("%ld\n",number);
 	//end=clock();
 	//cpu_time_used=((double)(end - start));
 	//printf("%f\n",cpu_time_used);

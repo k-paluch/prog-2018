@@ -11,18 +11,9 @@ unsigned long int count(unsigned long int i) {
 	return ret;
 }
 
-
-
-/*unsigned int nthdig(unsigned int n, unsigned int k){
-	while(n--){
-		k/=10;
-	}
-	return k%10;
-}*/
-
 int main(){
-	unsigned long int number;
-	unsigned long int dig;
+	unsigned long int number,dig;
+	int i;
 	scanf("%ld",&number);
 	while((count(number))>1){
 	dig= count(number);
@@ -34,7 +25,6 @@ int main(){
 		c++;
 	}
 	arr[c]='\0';
-	int i;
 	number=0;
 	for(i=0;i<c;i++){
 		number+=arr[i];

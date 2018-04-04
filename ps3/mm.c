@@ -14,7 +14,7 @@ unsigned long int count(unsigned long int i) {
 int main(){
 	unsigned long int number,dig;
 	int i;
-	scanf("%ld",&number);
+	scanf("%ld",&number); 
 	while((count(number))>1){
 		dig= count(number);
 		char arr[dig];

@@ -1,35 +1,19 @@
 #include<stdio.h>
-#include<stdbool.h>
-#include<ctype.h>
-#include<string.h>
-#include<time.h>
-#include<stdlib.h>
-
-unsigned long int count(unsigned long int i) {
-	unsigned long int ret = 1;
-	while(i/=10)ret++;
-	return ret;
-}
-
 int main(){
-	unsigned long int number,dig;
-	int i;
-	scanf("%ld",&number);
-	while((count(number))>1){
-		dig= count(number);
-		char arr[dig];
-		int c=0;
-		while(dig--){
-			arr[dig]=number%10;
-			number/=10;
-			c++;
-		}
-		arr[c]='\0';
-		number=0;
-		for(i=0;i<c;i++){
-			number+=arr[i];
-		}
+	char c;
+	int n =0;
+	c= getc(stdin);
+	while(c!='\n'){
+	n += (c-'0');
+	c = getc(stdin);
 	}
-	printf("%ld\n",number);
+	int sum=0,temp;
+	while(n!=0){
+		temp = n%10;
+		sum= sum+temp;
+		n = n/10;
+	}
+	printf("%d\n",sum);
 	return 0;
 }
+

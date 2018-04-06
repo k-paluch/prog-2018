@@ -1,18 +1,27 @@
 #include<stdio.h>
+#include<inttypes.h>
+uintmax_t digit(uintmax_t n);
 int main(){
 	char c;
-	int n =0;
+	uintmax_t n =0;
 	c= getc(stdin);
 	while(c!='\n'){
 	n += (c-'0');
 	c = getc(stdin);
 	}
-	int sum=0,temp;
-	while(n!=0){
-		temp = n%10;
-		sum= sum+temp;
-		n = n/10;
-	}
-	printf("%d\n",sum);
+	n = digit(n);
+	printf("%ju\n",n);
 }
 
+uintmax_t digit(uintmax_t n){
+	uintmax_t temp=0;
+	do{
+		while(n){
+			temp += (n%10);
+			n/=10;
+		}
+		n = temp;
+		temp =0;
+	}while(n/10!=0);
+	return n;
+}

@@ -19,3 +19,4 @@ int main(){
 	}while(n/10!=0);
 	printf("%ju\n",n);
 }
+

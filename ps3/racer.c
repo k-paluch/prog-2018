@@ -7,12 +7,14 @@ int main(void){
 	scanf("%d %d",&n,&t);
 	int s[n];
 	int v[n];
+	int x=0;
 	for(int i =0; i<n; i++){
 		scanf("%d %d",&s[i],&v[i]);
-		ds += s[i];
 	}
-	for(double i =0;i<2000;i++){
-		
+	int sum=0;
+	for(int i =0; i<n;i++){
+		sum = s[i]/(x+v[i]);
 	}
+	//if(sum == t)break;
 	return 0;
 }

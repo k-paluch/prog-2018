@@ -1,21 +1,19 @@
 #include<stdio.h>
 #include <stdlib.h>
-int main(){
-/*struct uzol{
-	int uzol;
+#include<math.h>
+struct uzol{
+	int vetva;
 	struct uzol *left;
 	struct uzol *right;
 };
 
-
+int compare(struct uzol* help1, struct uzol* help2);
+struct uzol* create(int vetva);
+void connect(struct uzol* vetva, struct uzol* next);
+struct uzol* create (int vetva);
+int main(){
 	int n,k;
 	scanf("%d %d",&n,&k);
-	if(n<1||n<50){
-		return 0;
-	}
-	if(k<1||k<20){
-		return 0;
-	}
 	int help[n][k];
 	for(int i =0; i< n;i++){
 		for(int j=0; j<k; j++){
@@ -36,10 +34,12 @@ int main(){
 	}
 
 	//COMPARE!!
-	int rozdiel=n,compared=0;
+	int rozdiel=n;
+	int compared=0;
 
 	for(int i=0;i<n;i++){
-		for(int j =0; j<k; j++){
+		for(int j =i; j<n; j++){
+			if(i==j)continue;
 			compared=compare(tree[i],tree[j]);
 			if(compared ==0){
 				rozdiel--;
@@ -51,17 +51,55 @@ int main(){
 	printf("%d\n",rozdiel);
 }
 
-struct uzol* create(int uzol){
-	struct node * temporary = (struct node*) calloc(1,sizeof(temporary));
-	temporary->left=NULL;
-	temporary->right=NULL;
-	temporary->uzol=uzol;
-	return temporary;
+struct uzol* create(int vetva){
+	struct uzol* help = (struct uzol*) calloc(1,sizeof(struct uzol));
+	help->left=NULL;
+	help->right=NULL;
+	help->vetva=vetva;
+	return help;
 }
 
-void connect(struct uzol* uzol, struct uzol* next){
+void connect(struct uzol* vetva, struct uzol* next){
+	struct uzol* help= vetva ;
+	if(next->vetva>help->vetva){
+		if(help->right==NULL){
+			help->right=next;
+		}
+		else{
+			connect(help->right,next);
+		}
+	}
+	else if(next->vetva<help->vetva){
+		if(help->left==NULL){
+			help->left=next;
+		}
+		else{
+			connect(help->left,next);
+		}
+	}
 }
 
-int compare(struct uzol* first, struct uzol* second){*/
+int compare(struct uzol* help1, struct uzol* help2){
+	int help=0;
+	if((help1!=help2)&&(help1==NULL||help1==NULL)){
+		return 1;
+	}
+
+	if(help1->left!=NULL){
+		if(help2->left!=NULL){
+			help=compare(help1->left,help2->left);
+			if(help==1)return 1;
+		}
+		else return 1;
+	}
+
+	if(help1->right!=NULL){
+		if(help2->right!=NULL){
+			help=compare(help1->right,help2->right);
+			if(help==1)return 1;
+		}
+		else return 1;
+	}
+
 	return 0;
 }

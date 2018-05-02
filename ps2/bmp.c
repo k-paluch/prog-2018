@@ -12,7 +12,7 @@ char* reverse(const char* text){
 	}
 	int i = (int)(strlen(text));
 	int j;
-	char* help=( char*) malloc ((i) *sizeof( char));
+	char* help=( char*) malloc ((i+1) *sizeof( char));
 	if(help == NULL){
 		return NULL;
 	}

@@ -31,11 +31,13 @@ char* reverse(const char* text){
 char* vigenere_encrypt(const char* key,const char* text){
 
 if(text == NULL || key == NULL) return NULL;
-	if(text[0] == '\0' || key[0] == '\0') return NULL;
-	
+	if(text[0] == '\0' || key[0] == '\0') {
+	    return NULL;
+	}
 	for(int i = 0; i < strlen(key); i++)
-		if(!isalpha(key[i])) return NULL;
-	
+		if(!isalpha(key[i])) {
+		    return NULL;
+		}	
 	int textl = strlen(text); 
 	int keyl=strlen(key);
 	for(int i = 0; i < keyl; i++) if(!isalpha(key[i])) return NULL;

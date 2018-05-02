@@ -83,8 +83,9 @@ if(text == NULL || key == NULL) return NULL;
 			}
 			else {
 			    encrypt[i] = toupper(encrypt[i]) + helpp;
-			    j++;
 			}
+			    j++;
+			
 		}
 	}
 	free(help);

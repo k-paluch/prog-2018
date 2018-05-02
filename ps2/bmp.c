@@ -79,8 +79,10 @@ if(text == NULL || key == NULL) return NULL;
 			if((toupper(encrypt[i]) + helpp) > 'Z'){
 				encrypt[i] = 64 + (toupper(encrypt[i]) + helpp - 'Z');
 			}
-			else encrypt[i] = toupper(encrypt[i]) + helpp;
-			 j++;
+			else {
+			    encrypt[i] = toupper(encrypt[i]) + helpp;
+			    j++;
+			}
 		}
 	}
 	free(help);

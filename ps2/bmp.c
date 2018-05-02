@@ -312,10 +312,7 @@ unsigned char* bmp_encrypt(const char* key, const char* text){
 */}
 
 char* bmp_decrypt(const char* key, const unsigned char *text){
-	if(key==NULL){
-		return NULL;
-	}
-	if(text==NULL){
+	if(key==NULL||text==NULL){
 		return NULL;
 	}
 	char* b=bit_decrypt(text);

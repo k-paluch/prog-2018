@@ -9,7 +9,7 @@
 
 int main()
 {
-	struct room* start = create_room("start", "Nic nevidis, no na zemi je baterka.");
+/*	struct room* start = create_room("start", "Nic nevidis, no na zemi je baterka.");
 	struct room* library = create_room("library", "Vsade len same knihy, no ziadne dvere.");
 		
 	set_exits_from_room(start, library, NULL, NULL, NULL);
@@ -66,6 +66,6 @@ int main()
 	printf("current room after %s\n", game->current_room->name);
 	destroy_game(game);
 	free(severna);
-	free(juzna);
+	free(juzna);*/
 	return 0;
 }

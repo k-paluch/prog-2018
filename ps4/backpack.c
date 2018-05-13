@@ -14,7 +14,7 @@ bool is_backpack_full(struct backpack* backpack){
 	return true;
 }
 struct backpack* create_backpack(const int capacity){
-	struct backpack* backpack = (struct backpack*)malloc(sizeof(struct backpack));
+	struct backpack* backpack = (struct backpack*)malloc((sizeof(struct backpack))+1);
 	backpack->capacity = capacity;
 	return backpack;
 }

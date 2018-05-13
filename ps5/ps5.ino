@@ -36,7 +36,7 @@ void loop() {
   lcd.backlight();
   lcd.clear();
   char* code = generate_code(false, 8);
-  for (int i = 0; i < 8; i++) {
+  for (int i = 0; i < 4; i++) {
     lcd.print((int)code[i]);
   }
   delay(5555);

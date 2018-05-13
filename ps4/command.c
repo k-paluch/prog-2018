@@ -7,8 +7,8 @@ struct command* create_command(char* name, char* description, char* pattern, siz
 	if(name == NULL || description == NULL){
 		return NULL;
 	}
-	int nlen = strlen(name);
-	int dlen = strlen(description);
+        size_t nlen = strlen(name);
+	size_t dlen = strlen(description);
 	if(nlen == 0 || dlen == 0){
 		return NULL;
 	}

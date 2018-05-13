@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=c11 -Werror -Wall
+CFLAGS=-std=c11 -Werror -Wconversion -Wall
 LDLIBS=-lm
 OUTPUT=textgame
 

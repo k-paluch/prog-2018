@@ -33,7 +33,7 @@ struct item{
  * @param properties item properties
  * @return Reference to the newly created item or NULL, if item could not be created.
  */
-struct item* create_item(char* name, char* description, int properties);
+struct item* create_item(char* name, char* description, unsigned int properties);
 
 
 /**

@@ -2,7 +2,7 @@
 #include<string.h>
 #include <stdlib.h>
 #include"item.h"
-struct item* create_item(char* name, char* description, int properties){
+struct item* create_item(char* name, char* description, unsigned int properties){
 	struct item* item = (struct item*)malloc(sizeof(struct item));
 	item->name= name;
 	item->description= description;

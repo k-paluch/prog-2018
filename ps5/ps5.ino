@@ -35,13 +35,16 @@ void setup() {
 void loop() {
   lcd.backlight();
   lcd.clear();
-  char* code = generate_code(false, 4);
-  for (int i = 0; i < 4; i++) {
+  char* code = generate_code(false, 8);
+  for (int i = 0; i < 8; i++) {
     lcd.print((int)code[i]);
-    delay(1000);
   }
   delay(5555);
   play_game(code);
+  for (int i = 0; i < 4; i++) {
+    lcd.print((int)code[i]);
+  }
+  delay(1000);
   free(code);
 
 }

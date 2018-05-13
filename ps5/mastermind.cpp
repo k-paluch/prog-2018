@@ -1,5 +1,4 @@
 #include<Arduino.h>
-//#include<stdio.h>
 #include<math.h>
 #include"mastermind.h"
 #include"lcd_wrapper.h"
@@ -8,24 +7,19 @@
  
 char* generate_code(bool repeat, int length){
   char* secret = (char*)malloc((length+1)*sizeof(char));
-  secret[0] = random(0, 10);
-  secret[1] =  random(0, 10);  
-  secret[2] =  random(0, 10);
-  secret[3] =  random(0, 10);
-  if(repeat && (secret[0] == secret[1])){
-    do{
-      secret[1] =  random(0, 10);
-    }while(secret[0] == secret[1]);
-  }
-  if(repeat &&(secret[0] == secret[2] || secret[1] == secret[2])){
-    do{
-      secret[1] =  random(0, 10);
-    }while(secret[0] == secret[2] || secret[1] == secret[2]);
-  }
-  if(repeat &&(secret[0] == secret[3] || secret[1] == secret[3] || secret[2] == secret[3])){
-    do{
-      secret[1] =  random(0, 10);
-    }while(secret[0] == secret[3] || secret[1] == secret[3] || secret[2] == secret[3]);
+  for(int i=0; i<length; i++){
+     secret[i] = random(0, 10);
+     if(!repeat){
+      for(int a=i; a=0; a--){
+        int f=i;
+        if(secret [i]==secret[a]){
+          i=0;
+          do{
+            secret[f] =  random(0, 10);
+          }while(secret[a] == secret[f]);
+        }
+      }
+     }
   }
   secret[length]='\0';
 	return secret;
@@ -39,7 +33,7 @@ int peg_a=0,peg_b=0;
   int attemp=0;
   
   int in1, in2, in3, in4,s1,s2,s3,s4,s;
-for(i=0;i<10; i++){
+for(i=0;i<2; i++){
      int i=0;
 lcdd.clear();
 char n[] = {"Attemp:"};
@@ -98,6 +92,7 @@ lcdd.clear();
     break;
    }
    }
+   peg_a=0;
    for(int f=0; f<4; f++){
     if(secret[f]==pole[f]){
       peg_a++;
@@ -108,7 +103,6 @@ lcdd.clear();
             peg_b++;
           }
         }
-        
       }
       if(peg_a==4){
         isWon=1;
@@ -128,17 +122,40 @@ if(!isWon){
     lcdd.setCursor(i, 0);
     lcdd.print(n[i]);
   }
+  delay(2000);
+  lcdd.clear();
   lcdd.setCursor(0, 1);
-    char e[] = {"SECRET WAS "};
-    for (int i = 0; i < strlen(n); i++) {
+    char e[] = {"AAAND"};
+    for (int i = 0; i < strlen(e); i++) {
     lcdd.setCursor(i, 0);
     lcdd.print(e[i]);
   }
-  for (int i = 0; i < strlen(n); i++) {
+  delay(500);
+  lcdd.clear();
+  lcdd.setCursor(0, 1);
+    char o[] = {"THEE"};
+    for (int i = 0; i < strlen(o); i++) {
     lcdd.setCursor(i, 0);
-    lcdd.print(secret[i]);
+    lcdd.print(o[i]);
   }
-  delay(2000);
+  delay(500);
+  lcdd.clear();
+  lcdd.setCursor(0, 1);
+    char t[] = {"SEEECRET"};
+    for (int i = 0; i < strlen(t); i++) {
+    lcdd.setCursor(i, 0);
+    lcdd.print(t[i]);
+  }
+  delay(500);
+  lcdd.clear();
+  lcdd.setCursor(0, 1);
+    char x[] = {"WAS"};
+    for (int i = 0; i < strlen(x); i++) {
+    lcdd.setCursor(i, 0);
+    lcdd.print(x[i]);
+  }
+  delay(500);
+  lcdd.clear();
   }
   else if(isWon){
     lcdd.clear();

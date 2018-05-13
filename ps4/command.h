@@ -29,7 +29,7 @@ struct command{
  * @param description command description for usage with HELP command
  * @param pattern search pattern for regular expression
  * @param nmatch the number of groups which can be matched with regexp usage
- * @return The reference of the command in memory or NULL, if there is no memory or name or description were not provided.
+ * @return The reference of the command in memory or NULL, if command could not be created or name or description were not provided.
  */
 struct command* create_command(char* name, char* description, char* pattern, size_t nmatch);
 

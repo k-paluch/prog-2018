@@ -8,12 +8,12 @@
  * Structure representing game location
  */
 struct room {
-	char* name;                 /// name of the room/location
-	char* description;          /// description of the room/location
-	struct room *north;         /// reference to the room on north
-	struct room *south;         /// reference to the room on south
-	struct room *east;          /// reference to the room on east
-	struct room *west;          /// reference to the room on west
+    char* name;                 /// name of the room/location
+    char* description;          /// description of the room/location
+    struct room *north;         /// reference to the room on north
+    struct room *south;         /// reference to the room on south
+    struct room *east;          /// reference to the room on east
+    struct room *west;          /// reference to the room on west
     struct container* items;    /// list of items in the room/location
 };
 

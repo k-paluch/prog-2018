@@ -39,7 +39,7 @@ struct container* create_container(struct container* first, enum container_type 
 }
 
 
-struct container* destroy_containers(struct container* first, enum container_type type)
+struct container* destroy_containers(struct container* first)
 {
 	if(first == NULL){
 		return NULL;
@@ -55,12 +55,16 @@ struct container* destroy_containers(struct container* first, enum container_typ
 	return NULL;
 }
 
-void* get_from_container_by_name(struct container* first, enum container_type type, const char* name)
+void* get_from_container_by_name(struct container* first, const char* name)
 {
-	return NULL;
-}
-
-struct container* delete_from_container(struct container* first, enum container_type type, void* entry)
-{
+/*	if(first==NULL){
+		return NULL;
+	}
+	struct container* container=NULL;
+	for(struct container *cursor=first; cursor!=NULL; cursor=container){
+		if(container->type->name == name){
+			return container;
+		}
+	}*/
 	return NULL;
 }

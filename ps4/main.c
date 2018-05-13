@@ -33,7 +33,7 @@ int main()
 	
 	destroy_room(start);
 	destroy_room(library);
-	destroy_containers(first, ROOM);
+	destroy_containers(first);
 	
 	
 	struct parser *balik = create_parser();

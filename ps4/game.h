@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "room.h"
+#include "command.h"
 #include "backpack.h"
 #include "parser.h"
 #include "container.h"

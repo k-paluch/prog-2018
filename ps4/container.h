@@ -45,7 +45,7 @@ struct container {
  * @param first reference to the first container of list
  * @param type type of container
  * @param entry container data
- * @return Reference to the first container of the list, or NULL, if such list doesn't exist or could not be created.
+ * @return Reference to the first container of the list, or NULL, if container could not be created.
  */
 struct container* create_container(struct container* first, enum container_type type, void* entry);
 
@@ -57,10 +57,9 @@ struct container* create_container(struct container* first, enum container_type 
  * container specified with the parameter first. Function returns value NULL as
  * the new reference to this list of containers.
  * @param first pointer to the first container of the list
- * @param type type of the data, which are stored in the list of containers
  * @return Function always returns NULL as the pointer to this list.
  */
-struct container* destroy_containers(struct container* first, enum container_type type);
+struct container* destroy_containers(struct container* first);
 
 
 /**
@@ -72,11 +71,10 @@ struct container* destroy_containers(struct container* first, enum container_typ
  * exists. Search pattern is not case sensitive. If such object doesn't exist,
  * NULL is returned.
  * @param first pointer to the first container of the list
- * @param type type of the data, which are stored in the list of containers
  * @param name search pattern
  * @return Reference to the founded object or NULL, if the object was not found.
  */
-void* get_from_container_by_name(struct container* first, enum container_type type, const char* name);
+void* get_from_container_by_name(struct container *first, const char *name);
 
 
 /**
@@ -87,10 +85,9 @@ void* get_from_container_by_name(struct container* first, enum container_type ty
  * container stays unchanged! Function returns reference to the beginning of
  * this list.
  * @param first pointer to the first container of the list
- * @param type type of the data, which are stored in the list of containers
  * @param entry container entry
  * @return Reference to the list of containers without given container.
  */
-struct container* delete_from_container(struct container* first, enum container_type type, void* entry);
+struct container* remove_container(struct container *first, void *entry);
 
 #endif

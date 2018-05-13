@@ -22,7 +22,8 @@ struct backpack* create_backpack(const int capacity){
 struct backpack* destroy_backpack(struct backpack* backpack){
 	//struct backpack* backpack = (struct backpack*)malloc(sizeof(struct backpack));
 	backpack = NULL;
-	return backpack;	
+	free(backpack);
+	return NULL;	
 }
 
 bool add_item_to_backpack(struct backpack* backpack, struct item* item){
@@ -32,16 +33,16 @@ bool add_item_to_backpack(struct backpack* backpack, struct item* item){
 }
 
 void delete_item_from_backpack(struct backpack* backpack, struct item* item){
-	//backpack->items->item=NULL;
-	//free(backpack->items->item);
+	backpack->items->item=NULL;
+	free(backpack->items->item);
 }
 
 struct item* get_item_from_backpack(const struct backpack* backpack, char* name){
-/*	struct item* item = (struct item*)malloc(sizeof(struct item));
+	struct item* item = (struct item*)malloc(sizeof(struct item));
 	while(item !=NULL){
-		if(backpack->items->item==name){
+		if(backpack->items->item->name==name){
 			return item;
 		}
-	}*/
+	}
 	return NULL;
 }

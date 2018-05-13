@@ -38,7 +38,7 @@ struct container* destroy_world(struct container* world)
 		cursor->room = destroy_room(cursor->room);
 	}
 	
-	destroy_containers(world, ROOM);
+	destroy_containers(world);
 	return NULL;
 }
 

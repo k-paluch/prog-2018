@@ -33,7 +33,7 @@ int peg_a=0,peg_b=0;
   int attemp=0;
   
   int in1, in2, in3, in4,s1,s2,s3,s4,s;
-for(i=0;i<2; i++){
+for(i=0;i<10; i++){
      int i=0;
 lcdd.clear();
 char n[] = {"Attemp:"};
